@@ -1,0 +1,277 @@
+{
+  "title": "Pakistan EPADS & PPRA Tender Notices Scraper input",
+  "description": "Choose jurisdictions and filters. The Actor reads only publicly accessible procurement pages and does not log in or submit bids.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sources": {
+      "sectionCaption": "Tender sources",
+      "title": "Jurisdictions",
+      "type": "array",
+      "description": "Federal includes both the EPADS 2.0 open-opportunities portal and the Federal PPRA public tender listing.",
+      "editor": "stringList",
+      "default": [
+        "federal",
+        "punjab",
+        "sindh",
+        "khyber_pakhtunkhwa",
+        "balochistan",
+        "gilgit_baltistan",
+        "ajk"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "federal",
+          "punjab",
+          "sindh",
+          "khyber_pakhtunkhwa",
+          "balochistan",
+          "gilgit_baltistan",
+          "ajk"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "keywords": {
+      "sectionCaption": "Opportunity filters",
+      "title": "Include keywords",
+      "type": "array",
+      "description": "Match against title, description, reference, buyer, category, sector, and location. Leave empty to include every notice.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "reference": {
+      "title": "Tender or reference number",
+      "type": "string",
+      "description": "Optional partial or exact portal ID, tender number, inquiry number, or buyer reference.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "description": {
+      "title": "Description contains",
+      "type": "string",
+      "description": "Optional phrase required in the long tender description. Keep Include details enabled so detail-only text can be checked.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "matchAllKeywords": {
+      "title": "Require all include keywords",
+      "type": "boolean",
+      "description": "When false, any include keyword can match. When true, every include keyword must match.",
+      "default": false
+    },
+    "excludeKeywords": {
+      "title": "Exclude keywords",
+      "type": "array",
+      "description": "Discard a notice when any of these phrases appears in its searchable text.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "organizations": {
+      "title": "Buyer or organization names",
+      "type": "array",
+      "description": "Optional partial-name filters such as Pakistan Army, Health Department, or WAPDA.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "cities": {
+      "title": "Cities or locations",
+      "type": "array",
+      "description": "Optional partial location filters such as Lahore, Karachi, Rawalpindi, Peshawar, Quetta, or Islamabad.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "noticeTypes": {
+      "title": "Notice types",
+      "type": "array",
+      "description": "Optional values such as Tender Notice, RFQ, RFP, EOI, Prequalification, Corrigendum, or Auction.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "categories": {
+      "title": "Procurement categories",
+      "type": "array",
+      "description": "Optional values such as Goods, Works, Non-Consultancy Services, Consultancy Services, Furniture, or Electrical Items.",
+      "editor": "stringList",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "activeOnly": {
+      "title": "Active notices only",
+      "type": "boolean",
+      "description": "Exclude notices explicitly marked closed, cancelled, archived, or with a past deadline.",
+      "default": true
+    },
+    "publishedWithinHours": {
+      "title": "Published within the last N hours",
+      "type": "integer",
+      "description": "Use 24 for a daily new-tender scan. Use 0 to disable this relative-date filter.",
+      "minimum": 0,
+      "maximum": 8760,
+      "default": 0
+    },
+    "publishedFrom": {
+      "title": "Published from",
+      "type": "string",
+      "description": "Inclusive YYYY-MM-DD date. Leave blank for no lower limit.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "publishedTo": {
+      "title": "Published to",
+      "type": "string",
+      "description": "Inclusive YYYY-MM-DD date. Leave blank for no upper limit.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "deadlineFrom": {
+      "title": "Deadline from",
+      "type": "string",
+      "description": "Inclusive YYYY-MM-DD date. Leave blank for no lower limit.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "deadlineTo": {
+      "title": "Deadline to",
+      "type": "string",
+      "description": "Inclusive YYYY-MM-DD date. Leave blank for no upper limit.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "minimumRemainingHours": {
+      "title": "Minimum time before deadline",
+      "type": "integer",
+      "description": "Use 48 to exclude opportunities with less than 48 hours remaining. Use 0 to disable.",
+      "minimum": 0,
+      "maximum": 8760,
+      "default": 0
+    },
+    "onlyNew": {
+      "sectionCaption": "Scheduled monitoring",
+      "title": "Return only new or changed notices",
+      "type": "boolean",
+      "description": "Remember notices between scheduled runs. A changed deadline, status, title, or document set is emitted again as an update.",
+      "default": false
+    },
+    "stateStoreName": {
+      "title": "Monitoring state store name",
+      "type": "string",
+      "description": "Use a different name for each independent monitoring task.",
+      "editor": "textfield",
+      "default": "pakistan-epad-tender-monitor-state"
+    },
+    "seenRetentionDays": {
+      "title": "Monitoring history retention",
+      "type": "integer",
+      "description": "Forget state records older than this many days.",
+      "minimum": 7,
+      "maximum": 730,
+      "default": 120
+    },
+    "includeDetails": {
+      "sectionCaption": "Extraction options",
+      "title": "Open tender detail pages",
+      "type": "boolean",
+      "description": "Extract descriptions, contacts, bid security, validity, procedure, and other fields when public detail pages exist.",
+      "default": true
+    },
+    "includeDocumentLinks": {
+      "title": "Collect public document links",
+      "type": "boolean",
+      "description": "Collect advertisements, bidding documents, corrigenda, and embedded EPADS bidding-document links.",
+      "default": true
+    },
+    "maxItems": {
+      "title": "Maximum notices",
+      "type": "integer",
+      "description": "Maximum normalized tender records saved to the dataset after filtering and deduplication.",
+      "minimum": 1,
+      "maximum": 5000,
+      "default": 100
+    },
+    "maxPagesPerSource": {
+      "title": "Maximum listing pages per portal",
+      "type": "integer",
+      "description": "Safety limit for each public portal. EPADS 2.0 currently serves many opportunities on one page.",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 50
+    },
+    "maxDetailPages": {
+      "title": "Maximum detail pages",
+      "type": "integer",
+      "description": "Cost guardrail across all portals. Text filters that only appear inside a notice description can only be evaluated for detail pages visited within this limit.",
+      "minimum": 0,
+      "maximum": 5000,
+      "default": 250
+    },
+    "maxConcurrency": {
+      "sectionCaption": "Advanced settings",
+      "title": "Maximum browser concurrency",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "default": 5
+    },
+    "maxRequestRetries": {
+      "title": "Request retries",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 3
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout in seconds",
+      "type": "integer",
+      "minimum": 15,
+      "maximum": 180,
+      "default": 75
+    },
+    "sortField": {
+      "title": "Sort results by",
+      "type": "string",
+      "description": "Relevance prioritizes keyword matches; other options mirror common tender-search ordering.",
+      "enum": [
+        "Relevance",
+        "Deadline",
+        "DatePublished",
+        "Title",
+        "Reference"
+      ],
+      "default": "Relevance"
+    },
+    "sortAscending": {
+      "title": "Sort ascending",
+      "type": "boolean",
+      "description": "Enable for earliest deadline/oldest publication/A-Z. Disable for highest relevance/latest publication/Z-A.",
+      "default": false
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional. A Pakistan or residential proxy can help when a provincial portal rejects cloud traffic.",
+      "editor": "proxy",
+      "default": {
+        "useApifyProxy": false
+      }
+    }
+  }
+}

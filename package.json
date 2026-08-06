@@ -1,0 +1,31 @@
+{
+  "name": "pakistan-epad-tender-notices-scraper",
+  "version": "0.2.0",
+  "description": "Apify Actor that normalizes public procurement notices from Pakistan EPADS and PPRA portals.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test test/*.test.js",
+    "smoke": "node scripts/live-smoke-test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "apify": "^3.7.2",
+    "cheerio": "^1.2.0",
+    "crawlee": "^3.18.0",
+    "luxon": "^3.7.2",
+    "playwright": "1.62.1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "apify",
+    "epads",
+    "pakistan",
+    "ppra",
+    "procurement",
+    "tenders"
+  ]
+}

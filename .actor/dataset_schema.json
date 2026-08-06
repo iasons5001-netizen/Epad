@@ -1,0 +1,243 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "noticeId": {
+        "type": ["string", "null"],
+        "title": "Notice ID",
+        "description": "Portal-assigned tender or procurement identifier."
+      },
+      "reference": {
+        "type": ["string", "null"],
+        "title": "Buyer reference",
+        "description": "Agency tender, inquiry, NIT, or procurement reference number."
+      },
+      "title": {
+        "type": "string",
+        "title": "Title",
+        "description": "Tender or procurement opportunity title."
+      },
+      "buyer": {
+        "type": ["string", "null"],
+        "title": "Buyer",
+        "description": "Procuring agency, organization, office, or procurement entity."
+      },
+      "jurisdiction": {
+        "type": "string",
+        "title": "Jurisdiction",
+        "description": "Federal, province, or territory represented by the source portal."
+      },
+      "source": {
+        "type": "string",
+        "title": "Source",
+        "description": "Primary public portal from which the normalized record was collected."
+      },
+      "sourceName": {
+        "type": "string",
+        "title": "Source name"
+      },
+      "sourceGroup": {
+        "type": "string",
+        "title": "Source group"
+      },
+      "sources": {
+        "type": "array",
+        "title": "All sources",
+        "items": { "type": "string" }
+      },
+      "sourceUrls": {
+        "type": "array",
+        "title": "Source URLs",
+        "items": { "type": "string" }
+      },
+      "noticeType": {
+        "type": ["string", "null"],
+        "title": "Notice type"
+      },
+      "category": {
+        "type": ["string", "null"],
+        "title": "Category"
+      },
+      "sector": {
+        "type": ["string", "null"],
+        "title": "Sector"
+      },
+      "procedure": {
+        "type": ["string", "null"],
+        "title": "Procedure"
+      },
+      "status": {
+        "type": ["string", "null"],
+        "title": "Status"
+      },
+      "publishedDate": {
+        "type": ["string", "null"],
+        "title": "Published"
+      },
+      "publishedDateIso": {
+        "type": ["string", "null"],
+        "format": "date-time",
+        "title": "Published ISO"
+      },
+      "deadline": {
+        "type": ["string", "null"],
+        "title": "Deadline"
+      },
+      "deadlineIso": {
+        "type": ["string", "null"],
+        "format": "date-time",
+        "title": "Deadline ISO"
+      },
+      "deadlinePrecision": {
+        "type": ["string", "null"],
+        "title": "Deadline precision"
+      },
+      "remainingHours": {
+        "type": ["number", "null"],
+        "title": "Hours remaining"
+      },
+      "remainingDays": {
+        "type": ["number", "null"],
+        "title": "Days remaining"
+      },
+      "city": {
+        "type": ["string", "null"],
+        "title": "City"
+      },
+      "description": {
+        "type": ["string", "null"],
+        "title": "Description"
+      },
+      "bidSecurity": {
+        "type": ["string", "null"],
+        "title": "Bid security"
+      },
+      "bidValidity": {
+        "type": ["string", "null"],
+        "title": "Bid validity"
+      },
+      "contactName": {
+        "type": ["string", "null"],
+        "title": "Contact"
+      },
+      "contactEmail": {
+        "type": ["string", "null"],
+        "title": "Email"
+      },
+      "contactPhone": {
+        "type": ["string", "null"],
+        "title": "Phone"
+      },
+      "documentLinks": {
+        "type": "array",
+        "title": "Documents",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "url": { "type": "string" },
+            "type": { "type": "string" }
+          }
+        }
+      },
+      "detailUrl": {
+        "type": ["string", "null"],
+        "title": "Details URL"
+      },
+      "submissionUrl": {
+        "type": ["string", "null"],
+        "title": "Submission URL"
+      },
+      "matchedKeywords": {
+        "type": "array",
+        "title": "Matched keywords",
+        "items": { "type": "string" }
+      },
+      "matchScore": {
+        "type": "number",
+        "title": "Match score"
+      },
+      "changeType": {
+        "type": ["string", "null"],
+        "title": "Change type",
+        "enum": ["new", "updated", null]
+      },
+      "scrapedAt": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Scraped at"
+      }
+    },
+    "required": ["title", "jurisdiction", "source", "detailUrl", "scrapedAt"]
+  },
+  "views": {
+    "opportunities": {
+      "title": "Opportunities",
+      "description": "Decision-ready tender overview.",
+      "transformation": {
+        "fields": [
+          "matchScore",
+          "changeType",
+          "jurisdiction",
+          "noticeId",
+          "title",
+          "buyer",
+          "noticeType",
+          "category",
+          "publishedDateIso",
+          "deadlineIso",
+          "remainingDays",
+          "status",
+          "detailUrl"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "matchScore": { "label": "Score", "format": "number" },
+          "changeType": { "label": "Change", "format": "text" },
+          "publishedDateIso": { "label": "Published", "format": "date" },
+          "deadlineIso": { "label": "Deadline", "format": "date" },
+          "remainingDays": { "label": "Days left", "format": "number" },
+          "detailUrl": { "label": "Details", "format": "link" }
+        }
+      }
+    },
+    "details": {
+      "title": "Full details",
+      "description": "Commercial and compliance fields including contacts and document links.",
+      "transformation": {
+        "fields": [
+          "jurisdiction",
+          "noticeId",
+          "reference",
+          "title",
+          "buyer",
+          "procedure",
+          "sector",
+          "bidSecurity",
+          "bidValidity",
+          "contactName",
+          "contactEmail",
+          "contactPhone",
+          "description",
+          "documentLinks",
+          "submissionUrl",
+          "sources",
+          "scrapedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "documentLinks": { "label": "Documents", "format": "array" },
+          "submissionUrl": { "label": "Submit", "format": "link" },
+          "sources": { "label": "Sources", "format": "array" },
+          "scrapedAt": { "label": "Scraped", "format": "date" }
+        }
+      }
+    }
+  }
+}

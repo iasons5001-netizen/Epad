@@ -1,0 +1,41 @@
+{
+  "sources": [
+    "federal",
+    "punjab",
+    "sindh",
+    "khyber_pakhtunkhwa",
+    "balochistan",
+    "gilgit_baltistan",
+    "ajk"
+  ],
+  "keywords": [
+    "tool kit",
+    "livelihood kit",
+    "NFI",
+    "non-food item",
+    "furniture",
+    "printing",
+    "stationery",
+    "general supplies",
+    "Pakistan Army",
+    "Ministry of Defence",
+    "Navy",
+    "Air Force"
+  ],
+  "reference": "",
+  "description": "",
+  "cities": [],
+  "matchAllKeywords": false,
+  "activeOnly": true,
+  "minimumRemainingHours": 48,
+  "includeDetails": true,
+  "includeDocumentLinks": true,
+  "onlyNew": true,
+  "stateStoreName": "i-ahmad-pakistan-tender-monitor",
+  "maxItems": 200,
+  "maxPagesPerSource": 50,
+  "maxDetailPages": 300,
+  "maxConcurrency": 5,
+  "sortField": "Relevance",
+  "sortAscending": false
+}

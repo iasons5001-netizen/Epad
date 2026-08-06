@@ -1,0 +1,16 @@
+{
+  "actorSpecification": 1,
+  "name": "pakistan-epad-tender-notices-scraper",
+  "title": "Pakistan EPADS & PPRA Tender Notices Scraper",
+  "description": "Scrape and normalize public tender notices from Federal EPADS/PPRA, all four provinces, Gilgit-Baltistan, and AJK.",
+  "version": "0.2",
+  "buildTag": "latest",
+  "minMemoryMbytes": 512,
+  "defaultMemoryMbytes": 2048,
+  "maxMemoryMbytes": 8192,
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

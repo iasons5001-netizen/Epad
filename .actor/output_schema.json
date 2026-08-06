@@ -1,0 +1,17 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Pakistan tender scraper outputs",
+  "description": "Normalized public procurement notices and a per-source run summary.",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Tender notices",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Run summary",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    }
+  }
+}
