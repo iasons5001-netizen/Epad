@@ -9,7 +9,7 @@
       "title": "Jurisdictions",
       "type": "array",
       "description": "Federal includes both the EPADS 2.0 open-opportunities portal and the Federal PPRA public tender listing.",
-      "editor": "stringList",
+      "editor": "select",
       "default": [
         "federal",
         "punjab",
@@ -29,6 +29,15 @@
           "balochistan",
           "gilgit_baltistan",
           "ajk"
+        ],
+        "enumTitles": [
+          "Federal EPADS and PPRA",
+          "Punjab",
+          "Sindh",
+          "Khyber Pakhtunkhwa",
+          "Balochistan",
+          "Gilgit-Baltistan",
+          "Azad Jammu and Kashmir"
         ]
       },
       "uniqueItems": true
@@ -227,6 +236,7 @@
       "sectionCaption": "Advanced settings",
       "title": "Maximum browser concurrency",
       "type": "integer",
+      "description": "Maximum number of portal requests processed concurrently. Reduce this value if a government portal throttles or times out.",
       "minimum": 1,
       "maximum": 20,
       "default": 5
@@ -234,6 +244,7 @@
     "maxRequestRetries": {
       "title": "Request retries",
       "type": "integer",
+      "description": "Number of automatic retries after a temporary portal, network, or timeout failure.",
       "minimum": 0,
       "maximum": 10,
       "default": 3
@@ -241,6 +252,7 @@
     "requestTimeoutSecs": {
       "title": "Request timeout in seconds",
       "type": "integer",
+      "description": "Maximum time allowed for one portal request before it is treated as timed out.",
       "minimum": 15,
       "maximum": 180,
       "default": 75
